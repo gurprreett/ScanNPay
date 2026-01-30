@@ -1,0 +1,38 @@
+﻿@{
+    ViewData["Title"] = "Cash Reward";
+}
+<div class="text-center">
+    <h1 class="display-4">Cash Reward</h1>
+    @using (Html.BeginForm("UPI", "Home", FormMethod.Post))
+    {
+        <div class="row" style="padding:5px;">
+            <img src="~/UPI1.png" width="50%" height="50%" />
+        </div>
+        <div class="row" style="padding:5px;">
+            <div class="col-9">
+                <input type="text" name="upiNo" value="@ViewBag.UPINo" placeholder="Enter UPI linked Mobile Number" required class="form-control" />
+            </div>
+            <div class="col-3">
+                @Html.DropDownList("upiProvider", ViewBag.UPIProviders as SelectList, "Select", new { @class = "form-control"})
+                @* <input type="hidden" id="hdnupiProvider" value="@ViewBag.UPIProvider" /> 
+                 <select class="form-control" name="upiProvider">
+                    <option disabled>Select</option>
+                    <option value="ptaxis">ptaxis</option>
+                    <option value="pthdfc">pthdfc</option>
+                    <option value="okhdfc">okhdfc</option>
+                    <option value="okicic">okicic</option>
+                    <option value="okaxis">okaxis</option>
+                </select> *@
+            </div>
+        </div>
+        <div class="row" style="padding:5px;">
+            <div class="col-8">
+            </div>
+            <div class="col-4">
+                <input type="submit" value="Verify" class="btn btn-primary" />
+            </div>
+        </div>
+    }
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/upidetails.js"></script>

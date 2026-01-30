@@ -1,0 +1,6 @@
+services:
+  scannpay:
+    image: ${DOCKER_REGISTRY-}scannpay
+    build:
+      context: .
+      dockerfile: ScanNPay/Dockerfile

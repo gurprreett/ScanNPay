@@ -1,0 +1,64 @@
+﻿@model ReviewOrderViewModel;
+@{
+    ViewData["Title"] = "Checkout";
+}
+<div class="text-center">
+    <h1 class="display-4">Review Order</h1>
+<div class="table-responsive">
+        <table class="table table-bordered table-striped">
+        <!-- Table content (thead, tbody, tr, th, td) goes here -->
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var p in Model.myCart.ToArray())
+            {
+                <tr>
+                    <td>@p.ProductName</td>
+                    <td>@p.Quantity</td>
+                    <td>@p.Points</td>
+                </tr> 
+            }
+        </tbody>
+    </table>
+</div>
+ @using (Html.BeginForm("ConfirmOrder", "Home", FormMethod.Post))
+    {
+    <div class="row">
+            <div class="col-9"><input type="hidden" name="Total" value="@Model.Total" /> </div>
+        <div class="col-3"><strong> Total: @Model.Total</strong></div>
+    </div>
+    <div class="row">
+        <hr />
+    </div>
+    <div class="row">
+        <h3 class="display-4">Address details</h3>
+    </div>
+    <div class="row" style="padding:5px;">
+            <input type="text" name="Address1" placeholder="Address Line 1" value="@Model.Address1" readonly class="form-control" />
+    </div>
+        <div class="row" style="padding:5px;">
+            <input type="text" name="Address2" placeholder="Address Line 2" value="@Model.Address2" readonly class="form-control" />
+    </div>
+        <div class="row" style="padding:5px;">
+            @Html.DropDownList("States", ViewBag.States as SelectList, "Select State", new { @class = "form-control" })
+        </div>
+        <div class="row" style="padding:5px;">
+            @Html.DropDownList("Cities", ViewBag.Cities as SelectList, "Select City", new { @class = "form-control" })
+        </div>
+        <div class="row" style="padding:5px;">
+            <input type="text" name="Pincode" minlength="6" maxlength="6" value="@Model.Pincode" readonly inputmode="numeric" placeholder="Pincode" required class="form-control" />
+    </div>
+        <div class="row" style="padding:5px;">
+    <div class="col-8">
+    </div>
+        <div class="col-4">
+            <input type="submit" value="Confirm Order" class="btn btn-primary" />
+        </div>
+</div>
+}
+</div>

@@ -1,0 +1,84 @@
+﻿@model List<ScanNPay.Repository.Transaction>
+@{
+    ViewData["Title"] = "My Statement";
+}
+<div class="text-center">
+    <h1 class="display-4">My Statement</h1>
+@* <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+        <!-- Table content (thead, tbody, tr, th, td) goes here -->
+        <thead>
+            <tr>
+                
+                <th>Date</th>
+                <th>Coupon</th>
+                <th>Product</th>
+                <th>Amount</th>
+                <th>Type</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var tran in Model)
+            {
+                <tr>
+                    
+                    <td>@tran.TransactionDate</td>
+                    <td>@tran.CouponCode</td>
+                    <td>@tran.ProductName</td>
+                    <td>@tran.Points</td>
+                    <td>@tran.TransactionType</td>
+                </tr> 
+            }
+        </tbody>
+    </table>
+</div> *@
+@foreach(var tran in Model)
+            {
+        if (tran.TransactionType == "Burn")
+        {
+            <div class="row" style="padding:10px;">
+                <div class="card bg-light text-danger">
+                    <div class="row card-header ">
+                            <div class="col-6" style="text-align:left;">Transaction Date :- @tran.TransactionDate</div>
+                            <div class="col-6" style="text-align:right;">Transaction Type :- @tran.TransactionType</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            Coupon/Order :- @tran.CouponCode
+                        </div>
+                        <div class="row">
+                            Product Name :- @tran.ProductName
+                        </div>
+                        <div class="row">
+                            Points :- @tran.Points
+                        </div>
+                    </div>
+                    @* <div class="card-footer" style="text-align:right">Order Value :- <strong>@p.TotalOrderValue Points</strong></div> *@
+                </div>
+            </div>
+        }
+    else
+        {
+            <div class="row" style="padding:10px;">
+                <div class="card bg-light text-success">
+                    <div class="row card-header ">
+                        <div class="col-6" style="text-align:left;">Transaction Date :- @tran.TransactionDate</div>
+                        <div class="col-6" style="text-align:right;">Transaction Type :- @tran.TransactionType</div>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            Coupon/Order :- @tran.CouponCode
+                        </div>
+                        <div class="row">
+                            Product Name :- @tran.ProductName
+                        </div>
+                        <div class="row">
+                            Points :- @tran.Points
+                        </div>
+                    </div>
+                    @* <div class="card-footer" style="text-align:right">Order Value :- <strong>@p.TotalOrderValue Points</strong></div> *@
+                </div>
+            </div>
+        }
+    }
+</div>

@@ -1,0 +1,69 @@
+﻿@model List<ScanNPay.Repository.Cart>
+@{
+    ViewData["Title"] = "Checkout";
+    var Total = 0;
+}
+<div class="text-center">
+    <h1 class="display-4">Checkout</h1>
+<div class="table-responsive">
+        <table class="table table-bordered table-striped">
+        <!-- Table content (thead, tbody, tr, th, td) goes here -->
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var p in Model)
+            {
+                <tr>
+                    <td>@p.ProductName</td>
+                    <td>@p.Quantity</td>
+                    <td>@p.Points</td>
+                </tr> 
+                Total += (p.Quantity * p.Points);
+            }
+        </tbody>
+    </table>
+</div>
+ @using (Html.BeginForm("Review", "Home", FormMethod.Post))
+    {
+    <div class="row">
+        <div class="col-9"><input type="hidden" name="Total" value="@Total" /> </div>
+        <div class="col-3"><strong> Total: @Total</strong></div>
+    </div>
+    <div class="row">
+        <hr />
+    </div>
+    <div class="row">
+        <h3 class="display-4">Address details</h3>
+    </div>
+    <div class="row" style="padding:5px;">
+        <input type="text" name="Address1" placeholder="Address Line 1" required class="form-control" />
+    </div>
+    <div class="row" style="padding:5px;">
+        <input type="text" name="Address2" placeholder="Address Line 2"  required class="form-control" />
+    </div>
+    <div class="row" style="padding:5px;">
+            @Html.DropDownList("States", ViewBag.States as SelectList, "Select State", new { @class = "form-control" })
+    </div>
+        <div class="row" style="padding:5px;">
+            @Html.DropDownList("Cities", ViewBag.States as SelectList, "Select City", new { @class = "form-control" })
+        </div>
+    <div class="row" style="padding:5px;">
+         <input type="text" name="Pincode" minlength="6" maxlength="6" inputmode="numeric" placeholder="Pincode" required class="form-control" />
+    </div>
+    <div class="row" style="padding:5px;">
+        <div class="col-8">
+            
+        </div>
+        <div class="col-4">
+            <input type="submit" value="Review Order" class="btn btn-primary" />
+        </div>
+    </div>
+}
+</div>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/js/cascade.js"></script>

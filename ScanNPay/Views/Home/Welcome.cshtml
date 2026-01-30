@@ -1,0 +1,70 @@
+﻿@model ScanNPay.Repository.Dashboard
+@{
+    ViewData["Title"] = "Welcome..";
+}
+<div class="text-center">
+    <h1 class="display-4">My Membership</h1>
+<div class="row">
+    <div class="col-4">
+        <div class="card text-dark" style="background-color:lightblue;">
+            <div class="card-header">
+                Total Scans
+            </div>
+            <div class="card-body">
+                    <p class="card-text">@Model.Scans</p>
+                    <p style="font-size:xx-small;">Last update : @Model.LastScanDate</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+            <div class="card text-dark" style="background-color:aquamarine">
+            <div class="card-header">
+                Total Points
+            </div>
+            <div class="card-body">
+                <p class="card-text">@Model.Earned</p>
+                    <p style="font-size:xx-small;">&nbsp;</p>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+            <div class="card text-dark" style="background-color:paleturquoise">
+            <div class="card-header">
+                Total Payout
+            </div>
+            <div class="card-body">
+                <p class="card-text">@Model.Burned</p>
+                    <p style="font-size:xx-small;">Last update : @Model.LastPayOutDate</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row" style="padding-top:20px;" >
+    <div class="col-4">
+            <div class="card text-dark" style="background-color:palegreen">
+            <div class="card-header">
+                Redeemable Points Balance
+            </div>
+            <div class="card-body">
+                <p class="card-text">@Model.Balance</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" style="padding-top:20px;">
+    <div class="col-12">
+      Space for Product Catalogue
+    </div>
+</div>
+<div class="row" style="padding-top:20px;">
+    <div class="col-12">
+        Space for Campaigns
+    </div>
+</div>
+<div class="row" style="padding-top:20px;">
+    <div class="col-12">
+        Space for Announcements
+    </div>
+</div>
+</div>

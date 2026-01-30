@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ScanNPay - @ViewData["Title"]</title>
+    <script type="importmap"></script>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/ScanNPay.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.css" />
+</head>
+<body>
+    
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+            @Html.Partial("_Notifications")
+        </main>
+    </div>
+    <footer class="border-top footer text-muted">
+        @if (Convert.ToBoolean(ViewData["isLoggedin"]) == true)
+        {
+            <div class="row col-12">
+                <div class="col-1" style="padding-left:20px;">
+                    <a title="Dashboard" class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Welcome" style="color:cornflowerblue !important;"><i class="bi bi-speedometer" style="font-size: 1rem; color: cornflowerblue;"></i></a>
+                </div>
+                <div class="col-2">
+                    <a title="KYC" class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="KYCStatus" style="color:cornflowerblue !important;"><i class="bi bi-person-lines-fill" style="font-size: 1rem; color: cornflowerblue;"></i> Profile</a>
+                </div>
+                <div class="col-2">
+                    <a title="Scan"  class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Scan" style="color:cornflowerblue !important;"><i class="bi bi-qr-code" style="font-size: 1rem; color: cornflowerblue;"></i> Scan</a>
+                </div>
+                <div class="col-2">
+                    <a title="Account Statement"  class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="ScanHistory" style="color:cornflowerblue !important;"><i class="bi bi-list-ol" style="font-size: 1rem; color: cornflowerblue;"></i> Statement</a>
+                </div>
+                <div class="col-2">
+                    <a title="Rewards" class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="RedeemRewards" style="color:cornflowerblue !important;"><i class="bi bi-gift" style="font-size: 1rem; color: cornflowerblue;"></i> Rewards</a>
+                </div>
+                <div class="col-2">
+                    <a title="Orders" class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Orders" style="color:cornflowerblue !important;"><i class="bi bi-gift-fill" style="font-size: 1rem; color: cornflowerblue;"></i> Orders</a>
+                </div>
+                <div class="col-1">
+                    <a title="Logout" class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Logout" style="color:cornflowerblue !important;"><i class="bi bi-power" style="font-size: 1rem; color: cornflowerblue;"></i></a>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="row col-12" style="padding-left:20px;">
+                &copy; 2026 All rights reserved.           
+            </div>
+        }
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,48 @@
+﻿@model List<ScanNPay.Repository.Cart>
+@{
+    ViewData["Title"] = "Cart";
+}
+<div class="text-center">
+    <h1 class="display-4">My Cart</h1>
+<div class="table-responsive">
+        <table class="table table-bordered table-striped">
+        <!-- Table content (thead, tbody, tr, th, td) goes here -->
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Amount</th>
+                <th>#</th>
+            </tr>
+        </thead>
+        <tbody>
+        @if (Model.Count >0)
+        {
+            foreach(var p in Model)
+            {
+                <tr>
+                    <td>@p.ProductName</td>
+                    <td>@p.Quantity</td>
+                    <td>@p.Points</td>
+                    <td scope="row"><a href="/Home/DeleteCart/@p.ProductId"><i class="bi bi-trash" style="font-size: 1rem; color: cornflowerblue;"></i></a></td>
+                </tr> 
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4">Your cart is empty</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>
+<div class="row">
+    <div class="col-6">
+            <a asp-controller="Home" asp-action="CheckOut" class="btn btn-primary">Checkout</a>
+    </div>
+        <div class="col-6">
+            <a asp-controller="Home" asp-action="RedeemRewards" class="btn btn-primary">Continue Shopping</a>
+        </div>
+</div>
+</div>

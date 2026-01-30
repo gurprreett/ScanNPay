@@ -1,0 +1,26 @@
+﻿@model List<ScanNPay.Repository.Product>
+@{
+    ViewData["Title"] = "Products";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Rewards</h1>
+    <div class="row col-12">
+        <div class="col-9">&nbsp;</div>
+        <div class=" col-3 float-end">
+            <a asp-area="" asp-controller="Home" asp-action="ViewCart" style="color:cornflowerblue !important;"><i class="bi bi-cart" style="font-size: 1rem; color: cornflowerblue;"></i>View Cart</a>
+        </div>
+    </div>
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        if (i % 2 == 0)
+        {
+            @:<div class="row" style="padding:10px!important;">
+        }
+        <div class="col-6"> <div class="card" style="width: 14rem;"> <img src="@Model[i].ProductImage" class="card-img-top" alt="..."> <div class="card-body"> <h5 class="card-title">@Model[i].ProductShortDesc <br /> Rs. @Model[i].Points</h5> <p class="card-text">@Model[i].ProductDesc</p> <a href="/Home/Addtocart/@Model[i].ProductId" class="btn btn-primary">Add to Cart</a> </div> </div> </div> 
+        if (i % 2 == 1 || i == Model.Count - 1) 
+        { 
+            @:</div>
+        }
+    }
+</div>

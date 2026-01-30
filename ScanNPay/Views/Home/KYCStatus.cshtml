@@ -1,0 +1,44 @@
+﻿@{
+    ViewData["Title"] = "Profile";
+}
+@model ScanNPay.Models.ProfileViewModel
+<div class="text-center">
+    
+    @using (Html.BeginForm("KYCStatus", "Home", FormMethod.Post))
+    {
+        <h1 class="display-4">@Model.Name</h1>
+        @Html.ValidationSummary(true)
+        <div class="form-group" style="padding:10px;">
+            <img src="~/profile.jfif"/>
+        </div>
+        <div class="form-group" style="padding:10px;">
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control", @placeholder = "Name as per Pancard", @pattern = "[[A-Z]{1,50}" })
+            @Html.ValidationMessageFor(m => m.Name)
+        </div>
+        <div class="form-group" style="padding:10px;">
+            @Html.TextBoxFor(m => m.MobileNo, new {@readonly="", @class = "form-control", @placeholder = "Mobile Number", @inputmode = "numeric", @pattern = "[[0-9]{10}" })
+            @Html.ValidationMessageFor(m => m.MobileNo)
+        </div>
+        <div class="form-group" style="padding:10px;">
+            @Html.TextBoxFor(m => m.Aadhar, new { @class = "form-control", @placeholder = "Aadhar for ID Proof", @inputmode = "numeric", @pattern = "[[0-9]{12}" })
+            @Html.ValidationMessageFor(m => m.Aadhar)
+        </div>
+        <div class="form-group" style="padding:10px;">
+            @Html.TextBoxFor(m => m.Pan, new { @class = "form-control", @placeholder = "Pancard", @pattern = "[A-Z]{5}[0-9]{4}[A-Z]{1}" })
+            @Html.ValidationMessageFor(m => m.Pan)
+        </div>
+        <div class="form-group" style="padding:10px;">
+            @Html.DropDownListFor(m => m.EstablishmentType, ViewBag.EstablishmentTypes as SelectList, "Establishment Type", new { @class = "form-control", @value = Model.EstablishmentType })
+            @Html.ValidationMessageFor(m => m.EstablishmentType)
+        </div>
+        <div class="form-group" style="padding:10px; text-align:left;">
+            @Html.CheckBoxFor(m => m.IsKYCComplete, new { }) I accept terms and conditions
+        </div>
+        <div class="form-group" style="padding:10px;">
+           <input type="submit" name="btnSubmit" value="Submit" class="btn btn-primary" />
+        </div>
+        @* <div class="form-group" style="padding:10px;">
+            @TempData["response"]
+        </div> *@
+    }
+</div>

@@ -1,0 +1,61 @@
+﻿@model List<ScanNPay.Repository.ListOrders>
+@{
+    ViewData["Title"] = "Orders";
+}
+<div class="text-center">
+    <h1 class="display-4">Orders</h1>
+    
+        @foreach (var p in Model)
+        {
+        <div class="row" style="padding:10px;">
+            <div class="card">
+                <div class="row card-header ">
+                    <div class="col-6" style="text-align:left;">Order No. :- @p.OrderNo</div>
+                    <div class="col-6" style="text-align:right;">Order Date :- @p.OrderDate</div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-4"><strong>Product Name</strong></div>
+                        <div class="col-4"><strong>Quantity</strong></div>
+                        <div class="col-4"><strong>Points</strong></div>
+                    </div>
+                    @foreach(var s in p.SubOrders)
+                    {
+                        <div class="row">
+                            <div class="col-4" >@s.ProductName</div>
+                            <div class="col-4">@s.Quantity</div>
+                            <div class="col-4">@s.Points</div>
+                        </div>
+                    }
+                </div>
+                <div class="card-footer" style="text-align:right">Order Value :- <strong>@p.TotalOrderValue Points</strong></div>
+            </div>
+        </div>
+        }
+    
+            
+@* <div class="table-responsive">
+        <table class="table table-bordered table-striped">
+        <!-- Table content (thead, tbody, tr, th, td) goes here -->
+        <thead>
+            <tr>
+                <th>Order Date</th>
+                <th>Order No.</th>
+                <th>Order Value</th>
+                <th>Items</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var p in Model)
+            {
+                <tr>
+                    <td>@p.OrderDate</td>
+                    <td>@p.OrderNo</td>
+                    <td>@p.TotalOrderValue</td>
+                    <td><a title="@p.OrderDetails" href="#">@p.Items</a></td>
+                </tr> 
+            }
+        </tbody>
+    </table>
+</div> *@
+</div>

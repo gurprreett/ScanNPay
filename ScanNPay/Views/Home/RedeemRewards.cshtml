@@ -1,0 +1,49 @@
+﻿@model List<ScanNPay.Repository.ProductCategories>
+@{
+    ViewData["Title"] = "My Rewards Store";
+}
+<div class="text-center">
+    <h1 class="display-4">My Rewards Store</h1>
+    @* <div class="row">
+        <img src="~/people.svg" width="80%" />
+    </div> *@
+    <div class="row" style="padding-top:10px;">
+        <div class="col-9">&nbsp;</div>
+        <div class="col-3 float-end">
+            <a asp-area="" asp-controller="Home" asp-action="ViewCart" style="color:cornflowerblue !important;"><i class="bi bi-cart" style="font-size: 1rem; color: cornflowerblue;"></i>View Cart</a>
+        </div>
+    </div>
+    
+        @* @foreach(var pc in Model)
+        {
+            <div class="row" style="padding-top:30px;">
+                <a title="@pc.ProductCategory" href='@pc.URL/@pc.ProductCategoryId'><img src='@pc.DisplayImage' width="30%" /></a>
+            </div>
+        } *@
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        if (i % 2 == 0)
+        {
+            @:<div class="row" style="padding:10px!important;">
+        }
+            <div class="col-6">
+                <div class="card" style="min-height:200px;">
+                    <div class="card-header">
+                        @Model[i].ProductCategory
+                    </div>
+                    <div class="card-body">
+                        <a title="@Model[i].ProductCategory" href='@Model[i].URL/@Model[i].ProductCategoryId'>
+                            <img src="@Model[i].DisplayImage" class="img-thumbnail w-auto" alt="@Model[i].ProductCategory">
+                        </a>
+                    </div>
+                </div>
+            </div>
+            @* <a title="@Model[i].ProductCategory" href='@Model[i].URL/@Model[i].ProductCategoryId'>
+                <div class="col-6"> <div class="card" style="width: 14rem;"> <img src="@Model[i].DisplayImage" class="card-img-top" alt="..." width="50%"> <div class="card-body"> <h5 class="card-title">@Model[i].ProductCategory</h5> </div> </div> </div>
+            </a> *@
+        if (i % 2 == 1 || i == Model.Count - 1) 
+        { 
+            @:</div>
+        }
+    }
+</div>
