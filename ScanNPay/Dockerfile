@@ -12,7 +12,7 @@ EXPOSE 8081
 FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
-COPY ["ScanNPay/ScanNPay.csproj", "ScanNPay/"]
+COPY ["ScanNPay.csproj", "ScanNPay/"]
 RUN dotnet restore "./ScanNPay/ScanNPay.csproj"
 COPY . .
 WORKDIR "/src/ScanNPay"
